@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
@@ -7,15 +7,19 @@ import BadCharacters from './components/layouts/BadCharacters';
 
 function App() {
 
-  const loadusers = async () => {
+  const [loading, setLoading] = useState(true);
+  const [badCharacters, setBadCharacters] = useState([])
+
+
+  const loadcharacters = async () => {
 
     const api_res = await axios.get('https://breakingbadapi.com/api/characters')
-    const bad_char = api_res.data
-    console.log(bad_char)
-
+    
+    setBadCharacters(api_res.data)
+    setLoading(false)
   }
 
-  loadusers()
+  useEffect(loadcharacters, [])
 
   return (
     <Fragment>
