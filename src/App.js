@@ -26,8 +26,10 @@ function App() {
     
       <Router>
 
-        <Navbar></Navbar>
-        <Route exact path = '/' component = { BadCharacters }></Route>
+        <Navbar />
+        <Route exact path = '/' render={props => (
+          <BadCharacters badCharacters = { badCharacters } />
+        )} ></Route>
 
       </Router>
     

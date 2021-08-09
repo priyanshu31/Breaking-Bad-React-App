@@ -5,13 +5,13 @@ const Navbar = () => {
     return (
         <Fragment>
 
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="container-fluid">
-                    <Link class="navbar-brand" to="/">Breaking Bad React App</Link>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div className="container-fluid">
+                    <Link className="navbar-brand" to="/">Breaking Bad React App</Link>
                     
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    <form className="d-flex">
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
+                        <button className="btn btn-outline-success" type="submit">Search</button>
                     </form>
                     
                 </div>
