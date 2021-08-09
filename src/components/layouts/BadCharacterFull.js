@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const BadCharacterFull = ({ badCharacter }) => {
 
@@ -7,6 +8,17 @@ const BadCharacterFull = ({ badCharacter }) => {
         border: '2px solid black',
         margin: '1rem'
     }
+
+    const [quotes, setQuotes] = useState([])
+
+    const getQuotes = async () => {
+        setQuotes([])
+        let api_res = await axios.get(`https://breakingbadapi.com/api/quote?author=${badCharacter.name}`)
+        setQuotes(api_res.data)
+
+    }
+
+    useEffect(getQuotes, [])
 
     return (
         <div className='container' style={{textAlign: 'center', width: '47rem'}}>
@@ -49,7 +61,7 @@ const BadCharacterFull = ({ badCharacter }) => {
 
             <br />
 
-            <div className="row">
+            <div className="row" style={{justifyContent: "space-between"}}>
 
                 <div className="col-5" >
 
@@ -60,6 +72,7 @@ const BadCharacterFull = ({ badCharacter }) => {
                             </tr>
                         </thead>
                         <tbody>
+                            
                             {
                                 badCharacter.occupation.map(occupation => (
                                     <tr>
@@ -72,6 +85,34 @@ const BadCharacterFull = ({ badCharacter }) => {
                     </table>
 
                 </div>
+
+                {
+                    quotes.length > 0
+                    &&
+                    <div className="col-7" >
+
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Quotes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                {
+                                    quotes.map(quote => (
+                                        <tr>
+                                            <td>{quote.quote}</td>
+                                        </tr>
+                                    ))
+                                }
+                                
+                            </tbody>
+                        </table>
+
+                    </div>
+                }
+
 
             </div>
 
