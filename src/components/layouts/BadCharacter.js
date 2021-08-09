@@ -12,7 +12,7 @@ const BadCharacter = ({ badCharacter }) => {
             </div>
             <ul className="list-group list-group-flush">
                 <li className="list-group-item">
-                    <strong> Occupation: </strong> {badCharacter.occupation[0]}
+                    <strong> Occupation: </strong> {badCharacter.occupation.join(", ")}
                 </li>
                 <li className="list-group-item">
                     <strong> Date of Birth: </strong> {badCharacter.birthday}

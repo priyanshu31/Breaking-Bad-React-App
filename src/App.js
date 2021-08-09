@@ -37,7 +37,6 @@ function App() {
 
         <Route exact path = '/readmore' render={props => (
 
-          // console.log(props.location.badCharacter)
           <BadCharacterFull badCharacter = {props.location.badCharacter} />
 
         )}>
