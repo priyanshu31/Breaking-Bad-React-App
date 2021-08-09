@@ -59,24 +59,34 @@ const BadCharacterFull = ({ badCharacter }) => {
                 </p>
             }
 
+            {
+                badCharacter.occupation.length > 0
+                && 
+                <p>
+                    <strong>Occupation: </strong> 
+                    {badCharacter.occupation.join(", ")}
+                </p>
+            }
+
             <br />
 
-            <div className="row" style={{justifyContent: "space-between"}}>
-
-                <div className="col-5" >
+            {
+                quotes.length > 0
+                &&
+                <div>
 
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th scope="col">Occupation</th>
+                                <th scope="col">Quotes</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                             {
-                                badCharacter.occupation.map(occupation => (
+                                quotes.map(quote => (
                                     <tr>
-                                        <td>{occupation}</td>
+                                        <td>{quote.quote}</td>
                                     </tr>
                                 ))
                             }
@@ -85,36 +95,7 @@ const BadCharacterFull = ({ badCharacter }) => {
                     </table>
 
                 </div>
-
-                {
-                    quotes.length > 0
-                    &&
-                    <div className="col-7" >
-
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Quotes</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                {
-                                    quotes.map(quote => (
-                                        <tr>
-                                            <td>{quote.quote}</td>
-                                        </tr>
-                                    ))
-                                }
-                                
-                            </tbody>
-                        </table>
-
-                    </div>
-                }
-
-
-            </div>
+            }
 
         </div>
     )
