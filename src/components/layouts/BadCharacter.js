@@ -22,7 +22,7 @@ const BadCharacter = ({ badCharacter }) => {
                     </li>
             </ul>
             <div className="card-body">
-                <Link to="/" className="btn btn-primary">Read More...</Link>
+                <Link to={{pathname: '/readmore', badCharacter: badCharacter }} className="btn btn-primary">Read More...</Link>
             </div>
         </div>
 

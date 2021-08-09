@@ -4,6 +4,7 @@ import axios from 'axios';
 import './App.css';
 import Navbar from './components/layouts/Navbar'
 import BadCharacters from './components/layouts/BadCharacters';
+import BadCharacterFull from './components/layouts/BadCharacterFull';
 
 function App() {
 
@@ -27,9 +28,22 @@ function App() {
       <Router>
 
         <Navbar />
+
         <Route exact path = '/' render={props => (
+          
           <BadCharacters badCharacters = { badCharacters } />
+        
         )} ></Route>
+
+        <Route exact path = '/readmore' render={props => (
+
+          // console.log(props.location.badCharacter)
+          <BadCharacterFull badCharacter = {props.location.badCharacter} />
+
+        )}>
+
+        </Route>
+
 
       </Router>
     
