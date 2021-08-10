@@ -16,6 +16,8 @@ import BadCharacters from './components/layouts/BadCharacters';
 // Impoting readmore extension component to show details of Bad Character
 import BadCharacterFull from './components/layouts/BadCharacterFull';
 
+import LoadingComponent from './components/layouts/loader';
+
 
 // Functional Component App
 
@@ -33,6 +35,9 @@ function App() {
   // categorySet to store categories of characters available
   const [categorySet, setCategorySet] = useState([])
 
+  // loading state to store whether data is fetched or not
+  const [loading, setLoading] = useState(true)
+
 
 
 
@@ -40,6 +45,9 @@ function App() {
   // This function is made async so that we can use await for the axios API request
 
   const loadcharacters = async () => {
+
+    // setting loading state as true as loading is started
+    setLoading(true)
 
     const api_res = await axios.get('https://breakingbadapi.com/api/characters')
     
@@ -55,6 +63,9 @@ function App() {
 
     // Since tmp was a Set it will have only unique categories so we can set our categorySet state to tmp
     setCategorySet(tmp)
+
+    // updating loading state to false as data is fetched from API
+    setLoading(false)
   }
 
 
@@ -108,8 +119,10 @@ function App() {
 
     // using useEffect hook to run the loadcharacters function and passing [] as arguments to ensure only one execution of function 
     useEffect(loadcharacters, [])
+    
+    if(loading)
+      return <LoadingComponent />
 
-  
   return (
     <Fragment>
     
@@ -123,6 +136,7 @@ function App() {
         <Route exact path = '/' render={props => (
           
           // BadCharacters Component to be rendered in case of '/' path
+          
           <BadCharacters badCharacters = { badCharacters } />
         
         )} ></Route>

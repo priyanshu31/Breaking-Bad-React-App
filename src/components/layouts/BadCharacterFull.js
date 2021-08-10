@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react'
 // Importing axios for fetching quotes using API Request
 import axios from 'axios'
 
+// Importing Loading Animation
+import LoadingComponent from './loader'
+
 const BadCharacterFull = ({ badCharacter }) => {
 
     // imageStyle to add inline css to character image
@@ -22,6 +25,9 @@ const BadCharacterFull = ({ badCharacter }) => {
     // using quotes state to store quotes of selected character
     const [quotes, setQuotes] = useState([])
 
+    // using quoteLoading to store whether it is quotes are loaded or not 
+    const [quoteLoading, setQuoteLoading] = useState(true);
+
 
 
     // getquotes function to fetch the quotes of requested character
@@ -30,6 +36,9 @@ const BadCharacterFull = ({ badCharacter }) => {
 
         // updating to quotes state to empty array
         setQuotes([])
+
+        // updating quote Loading to true as quotes are been fetched from API 
+        setQuoteLoading(true)
 
         // if badCharacter is defined that request is genuine
         if(badCharacter) {
@@ -41,6 +50,8 @@ const BadCharacterFull = ({ badCharacter }) => {
             setQuotes(api_res.data)
         }
         
+        // updating quote Loading to false as loading is complete 
+        setQuoteLoading(false)
     }
 
     // using useEffect Hook to call getQuotes function once
@@ -50,7 +61,7 @@ const BadCharacterFull = ({ badCharacter }) => {
     if(badCharacter === undefined)
         return (
             <div className="container" style = {cardstyle}>
-                    <h5>Nothing to Display</h5>
+                    <h5>No Char Selected to Display</h5>
             </div>
         )
     else
@@ -142,6 +153,13 @@ const BadCharacterFull = ({ badCharacter }) => {
                         </table>
 
                     </div>
+                }
+
+                {/* if quotes are loading then displaying loading component */}
+                {
+                    quoteLoading
+                    &&
+                    <LoadingComponent />
                 }
 
             </div>

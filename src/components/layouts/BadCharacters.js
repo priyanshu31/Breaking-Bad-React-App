@@ -34,8 +34,7 @@ const BadCharacters = ({ badCharacters }) => {
 
     // cardstyle to add some inline styling to our card list
     let cardstyle = {
-        padding: '1rem',
-        marginLeft: '2rem'
+        padding: '1rem'
     };
 
     // using useEffect Hook to set our pageNumber to 0 as soon as badCharacters array is changed
