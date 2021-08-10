@@ -10,24 +10,39 @@ function App() {
 
   const [loading, setLoading] = useState(true);
   const [badCharacters, setBadCharacters] = useState([])
-
+  const [badCharactersFull, setBadCharactersFull] = useState([])
 
   const loadcharacters = async () => {
 
     const api_res = await axios.get('https://breakingbadapi.com/api/characters')
     
+    setBadCharactersFull(api_res.data)
     setBadCharacters(api_res.data)
     setLoading(false)
   }
 
-  useEffect(loadcharacters, [])
+  const searchFilter = search => {
+
+    search = search.toLowerCase()
+
+    let tmpBadCharacters = []
+    badCharactersFull.forEach(element => {
+      if(element.name.toLowerCase().includes(search))
+        tmpBadCharacters.push(element)
+      })
+      
+      setBadCharacters(tmpBadCharacters)
+    }
+
+    
+    useEffect(loadcharacters, [])
 
   return (
     <Fragment>
     
       <Router>
 
-        <Navbar />
+        <Navbar searchFilter = {searchFilter} />
 
         <Route exact path = '/' render={props => (
           

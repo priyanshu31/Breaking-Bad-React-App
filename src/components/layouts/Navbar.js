@@ -1,7 +1,17 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ searchFilter }) => {
+
+    const [search, setSearch] = useState("")
+
+    const updateSearch = element => {
+        
+        setSearch(element.target.value)
+        searchFilter(element.target.value)
+        
+    }
+
     return (
         <Fragment>
 
@@ -9,11 +19,8 @@ const Navbar = () => {
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/">Breaking Bad React App</Link>
                     
-                    <form className="d-flex">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
-                        <button className="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                    
+                    <input className="form-control" placeholder="Search" style={{width: "15rem"}} value={search} onChange={updateSearch}></input>
+                   
                 </div>
             </nav>
             
