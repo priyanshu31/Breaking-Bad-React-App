@@ -55,7 +55,9 @@ const BadCharacterFull = ({ badCharacter }) => {
     }
 
     // using useEffect Hook to call getQuotes function once
-    useEffect(getQuotes, [])
+    useEffect(() => {
+        getQuotes()
+    }, [])
 
     // if badCharacter is undefined i.e., request is not genuine then return Nothing to Display card
     if(badCharacter === undefined)

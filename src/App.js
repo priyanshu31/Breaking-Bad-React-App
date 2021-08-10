@@ -118,7 +118,9 @@ function App() {
     }
 
     // using useEffect hook to run the loadcharacters function and passing [] as arguments to ensure only one execution of function 
-    useEffect(loadcharacters, [])
+    useEffect(() => {
+      loadcharacters()
+    }, [])
     
     if(loading)
       return <LoadingComponent />
