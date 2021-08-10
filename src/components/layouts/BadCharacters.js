@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import BadCharacter from './BadCharacter'
 import ReactPaginate from 'react-paginate';
 
@@ -19,8 +19,13 @@ const BadCharacters = ({ badCharacters }) => {
 
     let cardstyle = {
         padding: '1rem',
-        margin: '1rem',
+        marginLeft: '2rem'
     };
+
+    useEffect(() => {
+        console.log("Change Detected")
+        setPageNumber(0)
+    }, badCharacters)
 
     if (badCharacters.length > 0)
         return (    

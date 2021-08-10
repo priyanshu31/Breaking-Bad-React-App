@@ -1,14 +1,21 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+// Importing Axios to fetch data from breaking bad api
 import axios from 'axios';
 import './App.css';
+
+// Importing Navbar Component
 import Navbar from './components/layouts/Navbar'
+
+// Importing Main Home Page Component
 import BadCharacters from './components/layouts/BadCharacters';
+
+// Impoting readmore extension component to show details of Bad Character
 import BadCharacterFull from './components/layouts/BadCharacterFull';
 
 function App() {
 
-  const [loading, setLoading] = useState(true);
   const [badCharacters, setBadCharacters] = useState([])
   const [badCharactersFull, setBadCharactersFull] = useState([])
   const [filterState, setFilterState] = useState("All")
@@ -21,8 +28,6 @@ function App() {
     
     setBadCharactersFull(api_res.data)
     setBadCharacters(api_res.data)
-    setLoading(false)
-
     let tmp = new Set()
 
     api_res.data.forEach(element => element.category.split(", ").forEach(e => tmp.add(e)))
