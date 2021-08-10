@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // Importing Axios to fetch data from breaking bad api
@@ -62,61 +62,87 @@ function App() {
 
   const searchFilter = search => {
 
+    // using search as lower case to implement case-insensitive search 
     search = search.toLowerCase()
 
+    // using tmpBadCharacters to store the search results in temporary array
     let tmpBadCharacters = []
+
+    // traversing the whole badCharactersFull array
     badCharactersFull.forEach(element => {
+
+      // checking if search query is present in name of element(bad character) and also checking whether any filter is applied or not
       if(element.name.toLowerCase().includes(search) && (filterState === "All" || element.category === filterState))
+
         tmpBadCharacters.push(element)
       })
-      
+
+      // Now updating the BadCharacters state with tmpBadCharacters      
       setBadCharacters(tmpBadCharacters)
     }
     
+
+
+    // Filter function to apply filter as requested by user  
+
     const Filter = filter => {
       
-      console.log(filter)
+      // updating filterState
       setFilterState(filter)
      
+      // using tmpBadCharacters array to store the filtered search results
       let tmpBadCharacters = []
+
+      // traversing the whole badCharactersFull array
       badCharactersFull.forEach(element => {
+
+        // Checking the filters in category of element(bad character) and accordingly pushing the elements
         if(filter === "All" || element.category === filter)
           tmpBadCharacters.push(element)
       })
       
-      setBadCharacters(tmpBadCharacters)
 
+      // Updating badCharacters state with tmpBadCharacters
+      setBadCharacters(tmpBadCharacters)
     }
 
-    
+    // using useEffect hook to run the loadcharacters function and passing [] as arguments to ensure only one execution of function 
     useEffect(loadcharacters, [])
 
   return (
     <Fragment>
     
+      {/* Using Router to Route between '/' and '/readmore' */}
       <Router>
 
+        {/* Navbar Component */}
         <Navbar searchFilter = {searchFilter} categorySet = {categorySet} Filter = {Filter} />
 
+        {/* Routing to path '/' */}
         <Route exact path = '/' render={props => (
           
+          // BadCharacters Component to be rendered in case of '/' path
           <BadCharacters badCharacters = { badCharacters } />
         
         )} ></Route>
 
+        {/* Routing to path '/readmore' */}
         <Route exact path = '/readmore' render={props => (
+
+          // BadCharacterFull Component to be rendered in case of '/readmore' path
+          // passing the data of requested BadCharacter using props.location to reduce API call of requesting charcter data again
 
           <BadCharacterFull badCharacter = {props.location.badCharacter} />
 
         )}>
 
         </Route>
-
-
+        
       </Router>
     
     </Fragment>
   );
 }
 
+// exporting the fucntional component App
 export default App;
