@@ -52,7 +52,8 @@ const Navbar = ({ searchFilter, categorySet, Filter }) => {
 
                         <li className="nav-item dropdown">
                             
-                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                            <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Filter
                             </a>
                         
@@ -64,13 +65,15 @@ const Navbar = ({ searchFilter, categorySet, Filter }) => {
                                     Array.from(categorySet).map(element => (
 
                                         // creating li and calling filter function on click event by passing element using acessKey
+                                        // eslint-disable-next-line jsx-a11y/no-access-key
                                         <li style={liStyle} onClick={filter} accessKey={element}>{element}</li>
-                                    ))
-                                }
+                                        ))
+                                    }
 
                                 <li><hr className="dropdown-divider" /></li>
 
                                 {/* creating li and calling filter fucntion on click event by passing All */}
+                                {/* eslint-disable-next-line jsx-a11y/no-access-key */}
                                 <li style={liStyle} onClick={filter} accessKey="All">All</li>
                             </ul>
 
