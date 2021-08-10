@@ -109,6 +109,7 @@ function App() {
     // using useEffect hook to run the loadcharacters function and passing [] as arguments to ensure only one execution of function 
     useEffect(loadcharacters, [])
 
+  
   return (
     <Fragment>
     
@@ -137,11 +138,12 @@ function App() {
         )}>
 
         </Route>
-        
+
       </Router>
     
     </Fragment>
   );
+
 }
 
 // exporting the fucntional component App
