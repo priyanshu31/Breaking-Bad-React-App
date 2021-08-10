@@ -46,6 +46,5 @@ const BadCharacter = ({ badCharacter }) => {
     )
 }
 
-
 // exporting BadCharacter Functional Component
 export default BadCharacter
