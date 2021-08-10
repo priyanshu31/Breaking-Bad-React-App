@@ -6,7 +6,7 @@ const BadCharacters = ({ badCharacters }) => {
 
     const [pageNumber, setPageNumber] = useState(0)
     
-    const charactersPerPage = 8
+    const charactersPerPage = 10
     let pageVisited = pageNumber * charactersPerPage
 
     const displayBadCharacters = badCharacters
@@ -19,32 +19,26 @@ const BadCharacters = ({ badCharacters }) => {
 
     let cardstyle = {
         padding: '1rem',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(4, 1fr)',
-        gridGap: '1.2rem',
+        margin: '1rem',
     };
 
     if (badCharacters.length > 0)
         return (    
 
-            <div className="container" style={cardstyle}>
-                {/* {
-                    badCharacters.map((badCharacter) => (
-                    
-                        <BadCharacter key = { badCharacter.char_id } badCharacter = { badCharacter } />
+            <div className="container-fluid row" style={cardstyle}>
 
-                    ))
-                } */}
                 {displayBadCharacters}
 
-                <ReactPaginate 
-                    previousLabel = { "Previous" }
-                    nextLabel = { "Next" }
-                    pageCount = { Math.ceil(badCharacters.length / charactersPerPage) }
-                    onPageChange = { changePage }
-                    containerClassName = {"pagination"}
-                    subContainerClassName={"pages pagination"}
-                />
+                <div className="container" style={{display: 'flex'}}>
+                    <ReactPaginate 
+                        previousLabel = { "Previous" }
+                        nextLabel = { "Next" }
+                        pageCount = { Math.ceil(badCharacters.length / charactersPerPage) }
+                        onPageChange = { changePage }
+                        containerClassName = {"pagination"}
+                        subContainerClassName={"pages pagination"}
+                    />
+                </div>
 
             </div>
 
