@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, Component } from 'react'
+import React, { useState, useEffect } from 'react'
 
 // Importing BadCharacter Component
 import BadCharacter from './BadCharacter'

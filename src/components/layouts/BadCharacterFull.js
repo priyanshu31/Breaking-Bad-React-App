@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from 'react'
+import React, { useState, useEffect } from 'react'
 
 // Importing axios for fetching quotes using API Request
 import axios from 'axios'

@@ -1,5 +1,5 @@
-import React, { Fragment, useState, useEffect, Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React, { Fragment, useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // Importing Axios to fetch data from breaking bad api
 import axios from 'axios';
