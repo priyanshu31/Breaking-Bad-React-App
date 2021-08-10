@@ -59,7 +59,6 @@ const BadCharacterFull = ({ badCharacter }) => {
 
         getQuotes()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        
     }, [])
 
     // if badCharacter is undefined i.e., request is not genuine then return Nothing to Display card
