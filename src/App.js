@@ -11,6 +11,9 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [badCharacters, setBadCharacters] = useState([])
   const [badCharactersFull, setBadCharactersFull] = useState([])
+  const [filterState, setFilterState] = useState("All")
+
+  const [categorySet, setCategorySet] = useState([])
 
   const loadcharacters = async () => {
 
@@ -19,6 +22,12 @@ function App() {
     setBadCharactersFull(api_res.data)
     setBadCharacters(api_res.data)
     setLoading(false)
+
+    let tmp = new Set()
+
+    api_res.data.forEach(element => element.category.split(", ").forEach(e => tmp.add(e)))
+
+    setCategorySet(tmp)
   }
 
   const searchFilter = search => {
@@ -27,11 +36,26 @@ function App() {
 
     let tmpBadCharacters = []
     badCharactersFull.forEach(element => {
-      if(element.name.toLowerCase().includes(search))
+      if(element.name.toLowerCase().includes(search) && (filterState === "All" || element.category === filterState))
         tmpBadCharacters.push(element)
       })
       
       setBadCharacters(tmpBadCharacters)
+    }
+    
+    const Filter = filter => {
+      
+      console.log(filter)
+      setFilterState(filter)
+     
+      let tmpBadCharacters = []
+      badCharactersFull.forEach(element => {
+        if(filter === "All" || element.category === filter)
+          tmpBadCharacters.push(element)
+      })
+      
+      setBadCharacters(tmpBadCharacters)
+
     }
 
     
@@ -42,7 +66,7 @@ function App() {
     
       <Router>
 
-        <Navbar searchFilter = {searchFilter} />
+        <Navbar searchFilter = {searchFilter} categorySet = {categorySet} Filter = {Filter} />
 
         <Route exact path = '/' render={props => (
           
