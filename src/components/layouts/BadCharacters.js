@@ -23,9 +23,10 @@ const BadCharacters = ({ badCharacters }) => {
     };
 
     useEffect(() => {
-        console.log("Change Detected")
+
         setPageNumber(0)
-    }, badCharacters)
+
+    }, [badCharacters])
 
     if (badCharacters.length > 0)
         return (    
