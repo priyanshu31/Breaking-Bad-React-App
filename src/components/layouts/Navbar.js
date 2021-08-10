@@ -1,6 +1,9 @@
 import React, { Component, Fragment, useState } from 'react'
 import { Link } from 'react-router-dom';
 
+
+// Functional Component Navbar
+
 const Navbar = ({ searchFilter, categorySet, Filter }) => {
 
     // using state search to store search query as of input tag value

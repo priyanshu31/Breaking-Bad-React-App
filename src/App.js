@@ -17,7 +17,7 @@ import BadCharacters from './components/layouts/BadCharacters';
 import BadCharacterFull from './components/layouts/BadCharacterFull';
 
 
-// Main Functional Component App
+// Functional Component App
 
 function App() {
 
@@ -146,5 +146,5 @@ function App() {
 
 }
 
-// exporting the fucntional component App
+// exporting the functional component App
 export default App;
